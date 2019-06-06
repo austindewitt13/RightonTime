@@ -12,3 +12,4 @@ The app would be able to use either an iHeartRadio or Spotify API to link either
 Navigation:
 
 I was thinking that the bottom button navigation would work quite nicely with switching between the calendar and alarm list. You would be able to scroll through a list of alarms and edit them as well as switch over to the calendar and scroll through it and select specific days and times to set events.
+

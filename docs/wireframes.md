@@ -1,1 +1,2 @@
-# [Wireframes](WireframeRightonTime.png)
+# Wireframes  
+![Wireframes](WireframeRightonTime.png)
