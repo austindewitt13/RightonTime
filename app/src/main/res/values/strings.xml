@@ -1,6 +1,8 @@
 <resources>
   <string name="app_name">Right on Time</string>
-  <string name="title_home">Home</string>
-  <string name="title_dashboard">Dashboard</string>
-  <string name="title_notifications">Notifications</string>
+  <string name="title_night_mode">Night Mode</string>
+  <string name="title_set_alarms">Set Alarms</string>
+  <string name="title_calendar">Calendar</string>
+
+
 </resources>
