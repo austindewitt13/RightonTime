@@ -1,11 +1,19 @@
 package io.github.austindewitt13.rot;
 
+import static io.github.austindewitt13.rot.R.id.scroll_alarms;
+
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
       return false;
     }
   };
-
+  //TODO add never ending list of alarms and edit them
+  ListView listView;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -38,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
     mTextMessage = (TextView) findViewById(R.id.message);
     BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
     navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+    listView = (ListView) findViewById(scroll_alarms);
+
+    ArrayList<String> arrayList = new ArrayList<>();
+
+    arrayList.add ("@id/new_alarm");
+
+    ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
+
+    listView.setAdapter(arrayAdapter);
   }
 
 }
