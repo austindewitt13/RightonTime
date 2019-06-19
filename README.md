@@ -2,6 +2,7 @@
 
 * [User stories](docs/user-stories.md)
 * [Wireframes](docs/wireframes.md)
+* [Entity Relationship Diagram](docs/erd.md) click here for a [PDF](docs/erd.pdf) version.
 
 This app let's the user set timers and alarms to the tone, song, or radio of their choosing and set events on a calendar. 
 
