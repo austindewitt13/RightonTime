@@ -4,20 +4,16 @@ import static io.github.austindewitt13.rot.R.id.scroll_alarms;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
-import java.lang.reflect.Array;
+import io.github.austindewitt13.rot.model.Alarm;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-  private TextView mTextMessage;
 
   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
       = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -28,10 +24,8 @@ public class MainActivity extends AppCompatActivity {
         case R.id.navigation_night_mode:
           return true;
         case R.id.navigation_set_alarms:
-          mTextMessage.setText(R.string.title_set_alarms);
           return true;
         case R.id.navigation_calendar:
-          mTextMessage.setText(R.string.title_calendar);
           return true;
       }
       return false;
@@ -44,17 +38,16 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    mTextMessage = (TextView) findViewById(R.id.message);
     BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
     navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-    listView = (ListView) findViewById(scroll_alarms);
+    listView = findViewById(scroll_alarms);
 
-    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayList<Class<Alarm>> arrayList = new ArrayList<>();
 
-    arrayList.add ("@id/new_alarm");
+    arrayList.add(Alarm.class);
 
-    ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
+    ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arrayList);
 
     listView.setAdapter(arrayAdapter);
   }
