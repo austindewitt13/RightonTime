@@ -11,7 +11,7 @@ import java.util.List;
 public interface EventDao {
 
   @Insert
-  String insert(Event event);
+  Long insert(Event event);
 
   @Query("SELECT * FROM event")
   LiveData<List<Event>> getAll();
