@@ -16,21 +16,17 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-      = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-      switch (item.getItemId()) {
-        case R.id.navigation_night_mode:
-          return true;
-        case R.id.navigation_set_alarms:
-          return true;
-        case R.id.navigation_calendar:
-          return true;
-      }
-      return false;
-    }
-  };
+      = item -> {
+        switch (item.getItemId()) {
+          case R.id.navigation_night_mode:
+            return true;
+          case R.id.navigation_set_alarms:
+            return true;
+          case R.id.navigation_calendar:
+            return true;
+        }
+        return false;
+      };
   //TODO add never ending list of alarms and edit them
   ListView listView;
   @Override
@@ -38,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+    BottomNavigationView navigation = findViewById(R.id.navigation);
     navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     listView = findViewById(scroll_alarms);

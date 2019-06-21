@@ -9,7 +9,7 @@ import io.github.austindewitt13.rot.dao.EventDao;
 import io.github.austindewitt13.rot.model.Alarm;
 import io.github.austindewitt13.rot.model.Event;
 
-@Database(entities = {Alarm.class, Event.class}, version = 1)
+@Database(entities = {Alarm.class, Event.class}, version = 1,exportSchema = true)
 public abstract class AlarmDatabase extends RoomDatabase {
 
   public abstract AlarmDao alarmDao();

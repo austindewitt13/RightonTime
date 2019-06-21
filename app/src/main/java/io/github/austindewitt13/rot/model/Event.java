@@ -8,11 +8,11 @@ import androidx.room.TypeConverters;
 import java.util.Date;
 
 
-
-@Entity(foreignKeys = {
-    @ForeignKey(entity = Alarm.class, parentColumns = "alarm_id", childColumns = "event_id",
-    onDelete = ForeignKey.CASCADE)
-})
+@Entity
+//@Entity(foreignKeys = {
+//    @ForeignKey(entity = Alarm.class, parentColumns = "alarm_id", childColumns = "event_id",
+//    onDelete = ForeignKey.CASCADE)
+//})
 public class Event {
 
   @PrimaryKey(autoGenerate = true)
