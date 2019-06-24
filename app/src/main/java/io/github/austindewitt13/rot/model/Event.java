@@ -2,17 +2,11 @@ package io.github.austindewitt13.rot.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 import java.util.Date;
 
-
 @Entity
-//@Entity(foreignKeys = {
-//    @ForeignKey(entity = Alarm.class, parentColumns = "alarm_id", childColumns = "event_id",
-//    onDelete = ForeignKey.CASCADE)
-//})
 public class Event {
 
   @PrimaryKey(autoGenerate = true)

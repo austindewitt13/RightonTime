@@ -15,10 +15,8 @@ public class AlarmApp extends Application {
 
     new Thread(() -> {
       Alarm alarm = new Alarm();
-      alarm.setHour(2);
       AlarmDatabase.getInstance(this).alarmDao().insert(alarm);
       Event event = new Event();
-      event.setEvent("Birthday");
       AlarmDatabase.getInstance(this).eventDao().insert(event);
     }).start();
   }

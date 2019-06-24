@@ -21,6 +21,11 @@ import java.util.Observer;
 
 public class AlarmFragment extends Fragment {
 
+  public static AlarmFragment newInstance() {
+    AlarmFragment fragment = new AlarmFragment();
+    return fragment;
+  }
+
   private Context context;
 
   public AlarmFragment() {
@@ -49,7 +54,7 @@ public class AlarmFragment extends Fragment {
       alarmListView.setAdapter(adapter);
 
       });
-  return alarmListView;
+  return view;
   }
  }
 

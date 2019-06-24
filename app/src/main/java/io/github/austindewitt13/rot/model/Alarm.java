@@ -15,7 +15,6 @@ public class Alarm implements Serializable {
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "alarm_id")
   private long id;
-
   private int hour;
   private int minute;
 
