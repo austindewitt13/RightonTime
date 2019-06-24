@@ -16,4 +16,6 @@ public interface AlarmDao {
   @Query("SELECT * FROM alarm")
   LiveData<List<Alarm>> getAll();
 
+  @Query("SELECT * FROM alarm WHERE alarm_id = :id")
+  LiveData<Alarm> findById(Long id);
 }

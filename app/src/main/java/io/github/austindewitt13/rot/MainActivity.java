@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
       };
-  //TODO add never ending list of alarms and edit them
-  ListView listView;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -37,15 +35,6 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigation = findViewById(R.id.navigation);
     navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-    listView = findViewById(scroll_alarms);
-
-    ArrayList<Class<Alarm>> arrayList = new ArrayList<>();
-
-    arrayList.add(Alarm.class);
-
-    ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arrayList);
-
-    listView.setAdapter(arrayAdapter);
   }
 
 }
