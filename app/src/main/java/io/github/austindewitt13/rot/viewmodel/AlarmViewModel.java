@@ -14,8 +14,6 @@ public class AlarmViewModel extends AndroidViewModel {
 
   public AlarmViewModel(@NonNull Application application) {
     super(application);
-  /*  AlarmDatabase db = AlarmDatabase.getInstance(application);
-    alarms = db.alarmDao().getAll();*/
   }
 
   public LiveData<List<Alarm>> getAlarmsLiveData() {
@@ -26,12 +24,9 @@ public class AlarmViewModel extends AndroidViewModel {
   }
 
   public void addAlarm(final Alarm alarm) {
-    new Thread(new Runnable() {
-      @Override
-      public void run() {
-        AlarmDatabase db = AlarmDatabase.getInstance(getApplication());
-        db.alarmDao().insert(alarm);
-      }
+    new Thread(() -> {
+      AlarmDatabase db = AlarmDatabase.getInstance(getApplication());
+      db.alarmDao().insert(alarm);
     }).start();
   }
   public LiveData<Alarm> getAlarm(Long id) {

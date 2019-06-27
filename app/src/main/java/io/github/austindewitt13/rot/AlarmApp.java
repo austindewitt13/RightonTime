@@ -13,15 +13,6 @@ public class AlarmApp extends Application {
   public void onCreate() {
     super.onCreate();
     Stetho.initializeWithDefaults(this);
-
-   /* new Thread(() -> {
-      Alarm alarm = new Alarm();
-      AlarmDatabase.getInstance(this).alarmDao().insert(alarm);
-      alarm.setMinute(30);
-      Event event = new Event();
-      AlarmDatabase.getInstance(this).eventDao().insert(event);
-     event.setEvent("birthday");
-    }).start();*/
   }
 
 }

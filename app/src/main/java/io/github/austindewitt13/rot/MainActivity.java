@@ -1,35 +1,32 @@
 package io.github.austindewitt13.rot;
 
-import static io.github.austindewitt13.rot.R.id.alarm_list;
-import static io.github.austindewitt13.rot.R.id.beginning;
-
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.widget.TextView;
-import io.github.austindewitt13.rot.model.Alarm;
-import java.util.ArrayList;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import io.github.austindewitt13.rot.model.Alarm;
+import io.github.austindewitt13.rot.viewmodel.AlarmViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
+  private AlarmFragment alarmFragment;
+  private AlarmViewModel model;
+  private FloatingActionButton fab;
   public static final String TAG = MainActivity.class.getSimpleName();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    Fragment fragment = AlarmFragment.newInstance();
+
+    alarmFragment = AlarmFragment.newInstance();
+    setupFloatingActionButton();
     FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
-    assert fragment != null;
-    transaction1.replace(R.id.frame_layout, fragment);
+    assert alarmFragment != null;
+    transaction1.replace(R.id.frame_layout, alarmFragment);
     transaction1.commit();
     BottomNavigationView navigation = findViewById(R.id.navigation);
     navigation.setOnNavigationItemSelectedListener(item -> {
@@ -56,4 +53,9 @@ public class MainActivity extends AppCompatActivity {
       return true;
     });
   }
+  private void setupFloatingActionButton() {
+    fab = findViewById(R.id.fab);
+    fab.setOnClickListener((view)-> model.addAlarm(new Alarm()));
+  }
 }
+
