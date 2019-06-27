@@ -40,4 +40,12 @@ public class Alarm implements Serializable {
 
   public void setId(Long id) { this.id = id; }
 
+  @NonNull
+  @Override
+  public String toString() {
+    return "Alarm{" +
+        "hour=" + hour +
+        ", minute=" + minute +
+        '}';
+  }
 }

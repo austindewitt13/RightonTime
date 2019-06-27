@@ -44,16 +44,16 @@ public class AlarmFragment extends Fragment {
       @Nullable Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.alarm_fragment, container, false);
 
-    final ListView alarmListView = view.findViewById(R.id.alarm_list);
-
     final AlarmViewModel viewModel = ViewModelProviders.of(getActivity()).get(AlarmViewModel.class);
 
     viewModel.getAlarmsLiveData().observe(this, alarmList -> {
-      final ArrayAdapter<Alarm> adapter;
-      adapter = new ArrayAdapter<Alarm>(context, android.R.layout.simple_list_item_1, alarmList);
+      final ArrayAdapter<Alarm> adapter =
+          new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, alarmList);
+      final ListView alarmListView = view.findViewById(R.id.alarm_list);
       alarmListView.setAdapter(adapter);
 
       });
+
   return view;
   }
  }

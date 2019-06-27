@@ -21,7 +21,6 @@ import androidx.fragment.app.Fragment;
 public class MainActivity extends AppCompatActivity {
 
   public static final String TAG = MainActivity.class.getSimpleName();
-  private Button alarmButton;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

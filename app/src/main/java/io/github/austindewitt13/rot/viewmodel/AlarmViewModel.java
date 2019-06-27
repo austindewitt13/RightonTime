@@ -14,11 +14,14 @@ public class AlarmViewModel extends AndroidViewModel {
 
   public AlarmViewModel(@NonNull Application application) {
     super(application);
-    AlarmDatabase db = AlarmDatabase.getInstance(application);
-    alarms = db.alarmDao().getAll();
+  /*  AlarmDatabase db = AlarmDatabase.getInstance(application);
+    alarms = db.alarmDao().getAll();*/
   }
 
   public LiveData<List<Alarm>> getAlarmsLiveData() {
+    if(alarms == null) {
+      alarms = AlarmDatabase.getInstance(getApplication()).alarmDao().getAll();
+    }
     return alarms;
   }
 
