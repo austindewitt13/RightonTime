@@ -1,4 +1,4 @@
-#Milestone
+## Milestone
 
  Currently the user can navigate from Alarms to Calendar via the bottom buttons labeled 
  Alarms and Calendar and back and is able to add alarms into the listview via the floating 
