@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import io.github.austindewitt13.rot.model.Alarm;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
+    model = ViewModelProviders.of(this).get(AlarmViewModel.class);
 
     alarmFragment = AlarmFragment.newInstance();
     setupFloatingActionButton();

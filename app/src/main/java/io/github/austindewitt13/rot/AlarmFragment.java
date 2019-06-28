@@ -55,9 +55,10 @@ public class AlarmFragment extends Fragment {
 
     viewModel.getAlarmsLiveData().observe(this, alarmList -> {
       final ArrayAdapter<Alarm> adapter =
-          new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, alarmList);
+          new ArrayAdapter<>(context, android.R.layout.simple_list_item_activated_1,alarmList);
       final ListView alarmListView = view.findViewById(R.id.alarm_list);
       alarmListView.setAdapter(adapter);
+
 
       });
 

@@ -1,16 +1,11 @@
 ## Entity Types
 
 Alarms: 
-* list: long?
-
-* 
-Calendar: 
-
-* 
-
+* hours:int
+* minute:int
 
 Events: 
  
-* event name: String?
+* event: String
 
-* 
+* date:date

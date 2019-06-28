@@ -43,9 +43,8 @@ public class Alarm implements Serializable {
   @NonNull
   @Override
   public String toString() {
-    return "Alarm{" +
-        "hour=" + hour +
-        ", minute=" + minute +
-        '}';
+    return "Alarm " +
+         hour + ":"+
+         minute;
   }
 }
