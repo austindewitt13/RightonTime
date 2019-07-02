@@ -5,7 +5,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import java.io.Serializable;
-import java.sql.Time;
+
 
 @Entity
 public class Alarm implements Serializable {
@@ -38,7 +38,9 @@ public class Alarm implements Serializable {
     return id;
   }
 
-  public void setId(Long id) { this.id = id; }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   @NonNull
   @Override

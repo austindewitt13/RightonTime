@@ -13,19 +13,19 @@ import io.github.austindewitt13.rot.model.Alarm;
 import io.github.austindewitt13.rot.model.Event;
 
 @Database(entities = {Alarm.class, Event.class}, version = 1,exportSchema = true)
-public abstract class AlarmDatabase extends RoomDatabase {
+public abstract class AlarmEventDatabase extends RoomDatabase {
 
   public abstract AlarmDao alarmDao();
   public abstract EventDao eventDao();
 
-  private static AlarmDatabase INSTANCE;
+  private static AlarmEventDatabase INSTANCE;
 
-  public static AlarmDatabase getInstance(Context context) {
+  public static AlarmEventDatabase getInstance(Context context) {
     if(INSTANCE == null) {
-      synchronized (AlarmDatabase.class) {
+      synchronized (AlarmEventDatabase.class) {
         if (INSTANCE == null) {
           INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-              AlarmDatabase.class, "alarm_room")
+              AlarmEventDatabase.class, "alarm_room")
               .addCallback(new Callback() {
                 @Override
                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -40,9 +40,9 @@ public abstract class AlarmDatabase extends RoomDatabase {
   }
   private static class PopulateDbTask extends AsyncTask<Void, Void, Void> {
 
-    private final AlarmDatabase db;
+    private final AlarmEventDatabase db;
 
-    PopulateDbTask(AlarmDatabase db){
+    PopulateDbTask(AlarmEventDatabase db){
       this.db = db;
     }
 

@@ -16,54 +16,47 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import io.github.austindewitt13.rot.model.Alarm;
 import io.github.austindewitt13.rot.viewmodel.AlarmViewModel;
+
 import java.util.List;
 import java.util.Observer;
 
 
 public class AlarmFragment extends Fragment {
 
-  private FloatingActionButton fab;
 
-  public FloatingActionButton getFab() {
-    return fab;
-  }
+    public static AlarmFragment newInstance() {
+        AlarmFragment fragment = new AlarmFragment();
+        return fragment;
+    }
 
-  public static AlarmFragment newInstance() {
-    AlarmFragment fragment = new AlarmFragment();
-    return fragment;
-  }
+    private Context context;
 
-  private Context context;
+    public AlarmFragment() {
 
-  public AlarmFragment() {
+    }
 
-  }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
 
-  @Override
-  public void onAttach(@NonNull Context context) {
-    super.onAttach(context);
-    this.context = context;
-  }
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.alarm_fragment, container, false);
+        final AlarmViewModel viewModel = ViewModelProviders.of(getActivity()).get(AlarmViewModel.class);
 
-  @Nullable
-  @Override
-  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-      @Nullable Bundle savedInstanceState) {
-    final View view = inflater.inflate(R.layout.alarm_fragment, container, false);
-    fab = view.findViewById(R.id.fab);
-    final AlarmViewModel viewModel = ViewModelProviders.of(getActivity()).get(AlarmViewModel.class);
+        viewModel.getAlarmsLiveData().observe(this, alarmList -> {
+            final ArrayAdapter<Alarm> adapter =
+                    new ArrayAdapter<>(context, android.R.layout.simple_list_item_activated_1, alarmList);
+            final ListView alarmListView = view.findViewById(R.id.alarm_list);
+            alarmListView.setAdapter(adapter);
+        });
 
-    viewModel.getAlarmsLiveData().observe(this, alarmList -> {
-      final ArrayAdapter<Alarm> adapter =
-          new ArrayAdapter<>(context, android.R.layout.simple_list_item_activated_1,alarmList);
-      final ListView alarmListView = view.findViewById(R.id.alarm_list);
-      alarmListView.setAdapter(adapter);
-
-
-      });
-
-  return view;
-  }
- }
+        return view;
+    }
+}
 
 

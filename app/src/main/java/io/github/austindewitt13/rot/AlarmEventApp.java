@@ -6,7 +6,7 @@ import com.facebook.stetho.Stetho;
 import io.github.austindewitt13.rot.model.Alarm;
 import io.github.austindewitt13.rot.model.Event;
 
-public class AlarmApp extends Application {
+public class AlarmEventApp extends Application {
 
 
   @Override

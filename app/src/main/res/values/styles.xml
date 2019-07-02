@@ -11,4 +11,5 @@
   <style name="AppThemeDark" parent ="ThemeOverlay.AppCompat.Dark">
     <item name="android:colorPrimary">@color/colorPrimaryNight</item>
   </style>
+
 </resources>
