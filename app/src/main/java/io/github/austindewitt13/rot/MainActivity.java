@@ -3,7 +3,6 @@ package io.github.austindewitt13.rot;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TimePicker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,7 +13,6 @@ import io.github.austindewitt13.rot.model.Alarm;
 import io.github.austindewitt13.rot.viewmodel.AlarmViewModel;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,22 +63,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     private void setupFloatingActionButton() {
         Calendar calendar = Calendar.getInstance();
         fab = findViewById(R.id.fab);
 
         fab.setOnClickListener((view) -> {
-                        timeSetListener = (view1, hourOfDay, minute) -> {
-                            Alarm alarm = new Alarm();
-                            alarm.setHour(hourOfDay);
-                            alarm.setMinute(minute);
-                            model.addAlarm(alarm);
-                        };
-                timePickerDialog = new TimePickerDialog(this, timeSetListener, calendar.get(Calendar.HOUR_OF_DAY),
-                        calendar.get(Calendar.MINUTE), true);
-        timePickerDialog.show();
+            timeSetListener = (view1, hourOfDay, minute) -> {
+                Alarm alarm = new Alarm();
+                alarm.setHour(hourOfDay);
+                alarm.setMinute(minute);
+                model.addAlarm(alarm);
+            };
+            timePickerDialog = new TimePickerDialog(this, timeSetListener, calendar.get(Calendar.MILLISECOND),
+                    calendar.get(Calendar.MILLISECOND), false);
+            timePickerDialog.show();
         });
     }
-
 }
 

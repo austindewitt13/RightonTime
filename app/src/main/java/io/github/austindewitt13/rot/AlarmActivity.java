@@ -1,5 +1,4 @@
 package io.github.austindewitt13.rot;
 
-public class AlarmActivity {
-
+    public class AlarmActivity {
 }

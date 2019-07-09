@@ -25,29 +25,28 @@ public class EventFragment extends Fragment {
         return fragment;
     }
 
-//    private Context context;
-//
-//    public EventFragment() {
-//
-//    }
-//
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//        this.context = context;
-//    }
-//
-//    @Nullable
-//    @Override
-//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-//                             @Nullable Bundle savedInstanceState) {
-//        final View view = inflater.inflate(R.layout.event_fragment, container, false);
-//        final EventViewModel viewModel = ViewModelProviders.of(getActivity()).get(EventViewModel.class);
-//
-//        viewModel.getEventsLiveData().observe(this, event -> {
-//            final View<Event> adapter =
-//                    new ArrayAdapter(context, android.R.layout., event);
-//
-//        });
-//    }
+/*    private Context context;
+
+    public EventFragment() {
+
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.event_fragment, container, false);
+        final EventViewModel viewModel = ViewModelProviders.of(getActivity()).get(EventViewModel.class);
+
+        viewModel.getEventsLiveData().observe(this,event -> {
+            final
+        });
+        return view;
+    }*/
 }
