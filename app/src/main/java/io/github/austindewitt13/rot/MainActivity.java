@@ -1,27 +1,15 @@
 package io.github.austindewitt13.rot;
 
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import io.github.austindewitt13.rot.model.Alarm;
-import io.github.austindewitt13.rot.viewmodel.AlarmViewModel;
-
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private AlarmViewModel model;
     private AlarmFragment alarmFragment;
-    private FloatingActionButton fab;
-    private TimePickerDialog timePickerDialog;
-    private TimePickerDialog.OnTimeSetListener timeSetListener;
     public static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
@@ -29,10 +17,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        model = ViewModelProviders.of(this).get(AlarmViewModel.class);
+
 
         alarmFragment = AlarmFragment.newInstance();
-        setupFloatingActionButton();
+
         FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
         assert alarmFragment != null;
         transaction1.replace(R.id.frame_layout, alarmFragment);
@@ -63,22 +51,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-    private void setupFloatingActionButton() {
-        Calendar calendar = Calendar.getInstance();
-        fab = findViewById(R.id.fab);
-
-        fab.setOnClickListener((view) -> {
-            timeSetListener = (view1, hourOfDay, minute) -> {
-                Alarm alarm = new Alarm();
-                alarm.setHour(hourOfDay);
-                alarm.setMinute(minute);
-                model.addAlarm(alarm);
-            };
-            timePickerDialog = new TimePickerDialog(this, timeSetListener, calendar.get(Calendar.MILLISECOND),
-                    calendar.get(Calendar.MILLISECOND), false);
-            timePickerDialog.show();
-        });
-    }
 }
 
