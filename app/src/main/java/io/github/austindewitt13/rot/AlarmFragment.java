@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Switch;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,8 +18,6 @@ import io.github.austindewitt13.rot.model.Alarm;
 import io.github.austindewitt13.rot.viewmodel.AlarmViewModel;
 
 import java.util.Calendar;
-import java.util.List;
-import java.util.Observer;
 
 
 public class AlarmFragment extends Fragment {
@@ -57,7 +53,7 @@ public class AlarmFragment extends Fragment {
 
         final View view = inflater.inflate(R.layout.alarm_fragment, container, false);
 
-        setupFloatingActionBar(view);
+        setupFloatingActionButton(view);
 
         final AlarmViewModel viewModel = ViewModelProviders.of(getActivity()).get(AlarmViewModel.class);
         viewModel.getAlarmsLiveData().observe(this, alarmList -> {
@@ -69,7 +65,7 @@ public class AlarmFragment extends Fragment {
         return view;
     }
 
-    private void setupFloatingActionBar(View view) {
+    private void setupFloatingActionButton(View view) {
         Calendar calendar = Calendar.getInstance();
         fab = view.findViewById(R.id.fab);
         fab.setOnClickListener((fabView) -> {
@@ -80,7 +76,7 @@ public class AlarmFragment extends Fragment {
                 model.addAlarm(alarm);
             };
             timePickerDialog = new TimePickerDialog(context, timeSetListener, calendar.get(Calendar.MILLISECOND),
-                    calendar.get(Calendar.MILLISECOND), false);
+                    calendar.get(Calendar.MILLISECOND),false);
             timePickerDialog.show();
         });
     }

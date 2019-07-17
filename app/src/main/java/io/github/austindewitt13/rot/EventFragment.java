@@ -5,19 +5,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
-import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import io.github.austindewitt13.rot.model.Event;
 import io.github.austindewitt13.rot.viewmodel.EventViewModel;
 
-import java.util.ConcurrentModificationException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class EventFragment extends Fragment {
+public class EventFragment extends Fragment implements CalendarView.OnDateChangeListener {
+
+    private EventViewModel thisView;
+    CalendarView scheduleCalendarView;
+    private List<Event> scheduleList = new ArrayList<Event>();
+    private List<Event> dayScheduleList = new ArrayList<Event>();
+    Long date;
 
 
     public static EventFragment newInstance() {
@@ -25,7 +29,7 @@ public class EventFragment extends Fragment {
         return fragment;
     }
 
-/*    private Context context;
+    private Context context;
 
     public EventFragment() {
 
@@ -39,14 +43,22 @@ public class EventFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.event_fragment, container, false);
-        final EventViewModel viewModel = ViewModelProviders.of(getActivity()).get(EventViewModel.class);
+        final View thisView = inflater.inflate(R.layout.event_fragment, container, false);
 
-        viewModel.getEventsLiveData().observe(this,event -> {
-            final
-        });
-        return view;
-    }*/
+        scheduleCalendarView = thisView.findViewById(R.id.calendarView);
+        date = scheduleCalendarView.getDate();
+        scheduleCalendarView.setOnDateChangeListener(this);
+
+        return thisView;
+    }
+
+    public void onSelectedDayChange(CalendarView thisView, int year, int month, int dayOfMonth) {
+        if (scheduleCalendarView.getDate() != date) {
+            date = scheduleCalendarView.getDate();
+
+
+        }
+    }
 }
