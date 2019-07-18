@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Switch;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -52,8 +51,8 @@ public class AlarmFragment extends Fragment {
         model = ViewModelProviders.of(this).get(AlarmViewModel.class);
 
         final View view = inflater.inflate(R.layout.alarm_fragment, container, false);
-
         setupFloatingActionButton(view);
+
 
         final AlarmViewModel viewModel = ViewModelProviders.of(getActivity()).get(AlarmViewModel.class);
         viewModel.getAlarmsLiveData().observe(this, alarmList -> {
@@ -76,11 +75,12 @@ public class AlarmFragment extends Fragment {
                 model.addAlarm(alarm);
             };
             timePickerDialog = new TimePickerDialog(context, timeSetListener, calendar.get(Calendar.MILLISECOND),
-                    calendar.get(Calendar.MILLISECOND),false);
+                    calendar.get(Calendar.MILLISECOND), false);
             timePickerDialog.show();
         });
     }
 }
+
 
 
 
