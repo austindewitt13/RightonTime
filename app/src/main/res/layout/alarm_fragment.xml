@@ -27,5 +27,12 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:srcCompat="@drawable/ic_add"
           android:layout_marginEnd="16dp"/>
+  <Switch
+          android:text="On/Off"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/alarm_switch"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
