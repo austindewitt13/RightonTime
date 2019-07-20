@@ -1,8 +1,8 @@
 package io.github.austindewitt13.rot.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.*;
 
-import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -37,6 +37,12 @@ public class Event {
 
   public void setEvent(String event) {
     this.event = event;
+  }
+
+  @NonNull
+  @Override
+  public String toString() {
+    return event + " " + date;
   }
 
 }

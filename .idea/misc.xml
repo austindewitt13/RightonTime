@@ -8,6 +8,9 @@
     <option name="OPTION_DOCUMENT_TAG_VERSION" value="true" />
     <option name="OTHER_OPTIONS" value="-bootclasspath &quot;C:\Program Files\Java\jdk1.8.0_212\jre\lib\rt.jar&quot;;C:\android\sdk\platforms\android-21\android.jar -link https://docs.oracle.com/javase/8/docs/api/ -linkoffline https://developer.android.com/reference/ C:\Users\trabu\Desktop\bootcamp\projects\RightonTimeV5\ -link https://square.github.io/retrofit/2.x/retrofit/ -windowtitle &quot;Right On Time&quot;" />
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_alarm_manager.xml" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>

@@ -10,6 +10,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *This interface populates the AlarmEventDatabase with
+ * an Event's date, event string, and id.
+ */
 @Dao
 public interface EventDao {
 

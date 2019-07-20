@@ -3,4 +3,8 @@
   <string name="title_night_mode">Night Mode</string>
   <string name="title_set_alarms">Set Alarms</string>
   <string name="title_calendar">Calendar</string>
+  <string name="authentication_error">Unable to Authenticate User</string>
+  <string name="sign_out">Sign Out</string>
+  <string name="alarm_format"> </string>
+  <string name="title_day_mode">Day Mode</string>
 </resources>

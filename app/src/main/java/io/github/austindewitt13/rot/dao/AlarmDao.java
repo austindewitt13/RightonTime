@@ -7,6 +7,11 @@ import androidx.room.Query;
 import io.github.austindewitt13.rot.model.Alarm;
 import java.util.List;
 
+/**
+ *This interface populates the AlarmEventDatabase with
+ * an Alarm's hour, minute, and id.
+ */
+
 @Dao
 public interface AlarmDao {
 

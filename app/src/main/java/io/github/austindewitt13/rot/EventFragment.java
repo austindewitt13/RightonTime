@@ -18,10 +18,10 @@ import java.util.List;
 public class EventFragment extends Fragment implements CalendarView.OnDateChangeListener {
 
     private EventViewModel thisView;
-    CalendarView scheduleCalendarView;
+    private CalendarView scheduleCalendarView;
     private List<Event> scheduleList = new ArrayList<Event>();
     private List<Event> dayScheduleList = new ArrayList<Event>();
-    Long date;
+    private Long date;
 
 
     public static EventFragment newInstance() {
@@ -57,7 +57,6 @@ public class EventFragment extends Fragment implements CalendarView.OnDateChange
     public void onSelectedDayChange(CalendarView thisView, int year, int month, int dayOfMonth) {
         if (scheduleCalendarView.getDate() != date) {
             date = scheduleCalendarView.getDate();
-
 
         }
     }
