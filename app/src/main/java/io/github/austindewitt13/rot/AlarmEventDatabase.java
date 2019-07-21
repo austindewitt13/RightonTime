@@ -12,7 +12,7 @@ import io.github.austindewitt13.rot.dao.EventDao;
 import io.github.austindewitt13.rot.model.Alarm;
 import io.github.austindewitt13.rot.model.Event;
 
-@Database(entities = {Alarm.class, Event.class}, version = 1,exportSchema = true)
+@Database(entities = {Alarm.class, Event.class}, version = 1)
 public abstract class AlarmEventDatabase extends RoomDatabase {
 
   public abstract AlarmDao alarmDao();
@@ -25,7 +25,7 @@ public abstract class AlarmEventDatabase extends RoomDatabase {
       synchronized (AlarmEventDatabase.class) {
         if (INSTANCE == null) {
           INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-              AlarmEventDatabase.class, "alarm_room")
+              AlarmEventDatabase.class, "database_room")
               .addCallback(new Callback() {
                 @Override
                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -49,8 +49,6 @@ public abstract class AlarmEventDatabase extends RoomDatabase {
     @Override
     protected Void doInBackground(Void... voids) {
       Alarm alarm = new Alarm();
-      alarm.setHour(2);
-      alarm.setMinute(30);
       db.alarmDao().insert(alarm);
       return null;
     }

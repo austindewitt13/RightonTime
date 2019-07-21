@@ -18,6 +18,7 @@ public class Utils {
         SwitchTheme = theme;
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
+        onActivityCreateSetTheme(activity);
     }
     /** Set the theme of the activity, according to the configuration. */
     public static void onActivityCreateSetTheme(Activity activity)

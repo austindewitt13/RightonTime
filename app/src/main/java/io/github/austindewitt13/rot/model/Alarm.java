@@ -14,7 +14,7 @@ public class Alarm {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "alarm_id")
-    private long id;
+    private int id;
     private int hour;
     private int minute;
 
@@ -34,12 +34,11 @@ public class Alarm {
         this.minute = minute;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(int id) { this.id = id;
     }
 
     public String toStandardTime() {
@@ -48,8 +47,10 @@ public class Alarm {
         if (getHour() > 12) {
             hourStandard = getHour() - 12;
             afternoon = true;
+        } else if (getHour() == 0) {
+            hourStandard = 12;
         }
-        return String.format("%d : %d %s", hourStandard, getMinute(), afternoon ? "PM" : "AM");
+        return String.format("%d : %02d %s", hourStandard, getMinute(), afternoon ? "PM" : "AM");
     }
 
     @NonNull

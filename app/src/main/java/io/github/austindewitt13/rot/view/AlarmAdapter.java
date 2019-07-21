@@ -11,12 +11,11 @@ import io.github.austindewitt13.rot.AlarmFragment;
 import io.github.austindewitt13.rot.R;
 import io.github.austindewitt13.rot.model.Alarm;
 
-import java.util.Calendar;
 import java.util.List;
 
 /**
- *This class creates an adapter to use with the AlarmFragment class
- *  to inflate and make changes to the Alarm ListView.
+ * This class creates an adapter to use with the AlarmFragment class
+ * to inflate and make changes to the Alarm ListView.
  */
 public class AlarmAdapter extends ArrayAdapter<Alarm> {
 
@@ -36,13 +35,14 @@ public class AlarmAdapter extends ArrayAdapter<Alarm> {
      * Notifies the listener that the contents of the list have changed.
      */
     public void notifyChange() {
-        if(listener != null) {
+        if (listener != null) {
             listener.onChange(alarmContents);
         }
     }
 
     /**
      * Listens for any changes made by the user in the listview.
+     *
      * @param listener
      */
     public void setOnChangeListener(OnInputChangedListener listener) {
@@ -51,6 +51,7 @@ public class AlarmAdapter extends ArrayAdapter<Alarm> {
 
     /**
      * Inflates the alarm fragment view and
+     *
      * @param position
      * @param convertView
      * @param parent
@@ -59,15 +60,21 @@ public class AlarmAdapter extends ArrayAdapter<Alarm> {
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Calendar calendar = Calendar.getInstance();
 
         View layout = convertView == null ?
-                LayoutInflater.from(getContext()).inflate(R.layout.alarm_switch,parent,false)
+                LayoutInflater.from(getContext()).inflate(R.layout.alarm_switch, parent, false)
                 : convertView;
 
         TextView timeText = layout.findViewById(R.id.alarm_list_time);
         Alarm item = getItem(position);
         timeText.setText(item.toStandardTime());
+        ImageButton removeButton = layout.findViewById(R.id.cancel_alarm);
+
+        removeButton.setOnClickListener(view -> {
+            alarmContents.remove(item);
+            AlarmAdapter.this.notifyDataSetChanged();
+            AlarmAdapter.this.notifyChange();
+        });
 //        alarmOn.findViewById(R.id.alarm_on);
 //        alarmOff.findViewById(R.id.alarm_off);
 //        alarmFragment.cancelAlarm();

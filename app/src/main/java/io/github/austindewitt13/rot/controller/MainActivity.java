@@ -1,13 +1,10 @@
 package io.github.austindewitt13.rot.controller;
 
-import android.app.AlarmManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,9 +15,9 @@ import io.github.austindewitt13.rot.AlarmFragment;
 import io.github.austindewitt13.rot.EventFragment;
 import io.github.austindewitt13.rot.LoginActivity;
 import io.github.austindewitt13.rot.R;
-import io.github.austindewitt13.rot.model.Alarm;
 import io.github.austindewitt13.rot.service.GoogleSignInService;
 import io.github.austindewitt13.rot.util.Utils;
+
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -45,18 +42,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         boolean handled = true;
-        switch (item.getItemId()) {
-            case R.id.sign_out:
-                signOut();
-                break;
-            default:
-                handled = super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.sign_out) {
+            signOut();
+        } else {
+            handled = super.onOptionsItemSelected(item);
         }
         return handled;
     }
 
     private void fragmentSwitching() {
-
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(item -> {
             Fragment selectedFragment = null;
@@ -64,19 +58,23 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_calendar:
                     selectedFragment = EventFragment.newInstance();
+                    navigation.setSelectedItemId(R.id.calendarView);
                     Log.d(TAG, "calendar nav button worked");
                     break;
 
                 case R.id.navigation_night_mode:
                     Utils.changeToTheme(this, Utils.THEME_NIGHT);
+                    navigation.setSelectedItemId(R.id.navigation_night_mode);
                     break;
 
                 case R.id.navigation_day_mode:
                     Utils.changeToTheme(this, Utils.THEME_DAY);
+                    navigation.setSelectedItemId(R.id.navigation_day_mode);
                     break;
 
                 case R.id.navigation_set_alarms:
                     selectedFragment = AlarmFragment.newInstance();
+                    navigation.setSelectedItemId(R.id.alarm_list);
                     Log.d(TAG, "alarm nav button worked");
                     break;
 
@@ -108,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
             private void update() {
                 runOnUiThread(() -> {
-                    Date d = new Date();
-                    String time = DateFormat.getTimeInstance(DateFormat.SHORT).format(d);
+                    Date date = new Date();
+                    String time = DateFormat.getTimeInstance(DateFormat.SHORT).format(date);
                     TextView timeView = findViewById(R.id.time_header);
                     timeView.setText(time);
                 });
@@ -132,16 +130,5 @@ public class MainActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
-    }
-
-    public void setAlarm(View view) {
-
-        TextView alarmText = findViewById(R.id.alarm_list_time);
-
-        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-
-
-
-
     }
 }

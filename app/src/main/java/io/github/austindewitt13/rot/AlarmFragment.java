@@ -1,15 +1,13 @@
 package io.github.austindewitt13.rot;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.app.TimePickerDialog;
+import android.app.*;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +20,6 @@ import io.github.austindewitt13.rot.view.AlarmAdapter;
 import io.github.austindewitt13.rot.viewmodel.AlarmViewModel;
 
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
 
 public class AlarmFragment extends Fragment {
@@ -31,96 +28,111 @@ public class AlarmFragment extends Fragment {
     private AlarmAdapter alarmAdapter;
     private TimePickerDialog timePickerDialog;
     private TimePickerDialog.OnTimeSetListener timeSetListener;
-    private List<Alarm> alarmList;
+    private ListView listView;
+    private View view;
+    private Alarm alarm = new Alarm();
+
+
+
 
     public static AlarmFragment newInstance() {
         return new AlarmFragment();
     }
 
-    private Context context;
-
     public AlarmFragment() {
 
     }
 
+    private Context context;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        this.context = context;
-    }
+        this.context = context; }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        model = ViewModelProviders.of(this).get(AlarmViewModel.class);
-        alarmList = new LinkedList<>();
-        alarmAdapter = new AlarmAdapter(context, alarmList);
-        final View buttonView = inflater.inflate(R.layout.alarm_switch,container, false);
-        final View view = inflater.inflate(R.layout.alarm_fragment, container, false);
+        view = inflater.inflate(R.layout.alarm_fragment, container, false);
         setupFloatingActionButton(view);
-        final ListView listView = view.findViewById(R.id.alarm_list);
-        listView.setAdapter(alarmAdapter);
+        listView = view.findViewById(R.id.alarm_list);
+        model = ViewModelProviders.of(this).get(AlarmViewModel.class);
+        model.getAlarmsLiveData().observe(this, (alarms) -> {
+            alarmAdapter = new AlarmAdapter(context, alarms);
+            listView.setAdapter(alarmAdapter);
+        });
 
-        Button buttonCancelAlarm = buttonView.findViewById(R.id.cancel_alarm);
-        buttonCancelAlarm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancelAlarm();
-            }
+        model.removeAlarm(alarm).observe(this, (id) ->{
+            removeAlarmNotification(id);
+            alarmAdapter.notifyChange();
         });
 
         return view;
     }
 
-//    private void setupCancelButton(View view) {
-//        Button buttonCancelAlarm = findViewById(R.id.cancel_alarm);
-//        buttonCancelAlarm.setOnClickListener(view1 -> cancelAlarm());
+
+//    private void setupCancelButton(View buttonView, long id) {
+//        Alarm alarm = new Alarm();
+//        ImageButton buttonCancelAlarm = buttonView.findViewById(R.id.cancel_alarm);
+//        buttonCancelAlarm.setOnClickListener((cancelView) -> {
+//            removeAlarmNotification(id);
+//            model.getAlarmsLiveData().observe(this, (alarms) -> {
+//                model.removeAlarm(alarm);
+//            });
+//        });
 //    }
 
     private void setupFloatingActionButton(View view) {
         FloatingActionButton fab = view.findViewById(R.id.fab);
-        Calendar calendar = Calendar.getInstance();
+
+        timeSetListener = (view1, hourOfDay, minute) -> {
+            Alarm alarm = new Alarm();
+            alarm.setHour(hourOfDay);
+            alarm.setMinute(minute);
+            model.addAlarm(alarm).observe(this, (id) -> {
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                calendar.set(Calendar.MINUTE, minute);
+                startAlarm(calendar, id);
+            });
+        };
         fab.setOnClickListener((fabView) -> {
-            timeSetListener = (view1, hourOfDay, minute) -> {
-                Alarm alarm = new Alarm();
-                alarm.setHour(hourOfDay);
-                alarm.setMinute(minute);
-                model.addAlarm(alarm);
-                alarmList.add(alarm);
-                alarmAdapter.notifyDataSetChanged();
-                alarmAdapter.notifyChange();
-
-                startAlarm(alarm);
-
-            };
-            timePickerDialog = new TimePickerDialog(context, timeSetListener, calendar.get(Calendar.MILLISECOND),
-                    calendar.get(Calendar.MILLISECOND), false);
+            Calendar calendar = Calendar.getInstance();
+            timePickerDialog = new TimePickerDialog(context, timeSetListener, calendar.get(Calendar.HOUR_OF_DAY),
+                    calendar.get(Calendar.MINUTE), false);
             timePickerDialog.show();
         });
     }
 
-    public void startAlarm(Alarm alarm) {
+    public void startAlarm(Calendar calendar, long id) {
 
-        Calendar calendar = Calendar.getInstance();
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlertReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1, intent, 0);
+        intent.putExtra("event_type", 1);
+        intent.putExtra("alarm_id", (int)id);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, (int)id, intent, 0);
 
-        if(calendar.before(Calendar.getInstance())) {
+        if (calendar.before(Calendar.getInstance())) {
             calendar.add(Calendar.DATE, 1);
         }
+        if (alarmManager != null) {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+        }
 
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 
-    public AlarmFragment cancelAlarm() {
+    public void removeAlarmNotification(long id) {
+
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlertReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1, intent, 0);
-
-        alarmManager.cancel(pendingIntent);
-        return null;
+        intent.putExtra("event_type", 1);
+        intent.putExtra("alarm_id_remove", (int)id);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, (int)id, intent, 0);
+        if (alarmManager != null) {
+            alarmManager.cancel(pendingIntent);
+        }
     }
 }

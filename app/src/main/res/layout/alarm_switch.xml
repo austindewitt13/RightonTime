@@ -8,45 +8,55 @@
 
     <TextView
             android:id="@+id/alarm_list_time"
-            android:layout_width="110dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
             android:textColor="@color/colorAccent"
             android:textSize="45sp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            android:textAlignment="center"/>
+            android:textAlignment="textEnd"
+            app:layout_constraintWidth_percent="0.6"
+            app:layout_constraintStart_toEndOf="@id/cancel_alarm"
+            app:layout_constraintEnd_toStartOf="@id/alarm_on"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            android:layout_marginEnd="8dp"/>
 
-    <Button android:id="@+id/cancel_alarm"
-            android:text="Cancel"
+    <ImageButton
+            android:id="@+id/cancel_alarm"
+            android:src="@drawable/ic_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintRight_toLeftOf="@id/alarm_on"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="16dp"
-    />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/alarm_list_time"
+            app:layout_constraintTop_toTopOf="@id/alarm_list_time"
+            app:layout_constraintBottom_toBottomOf="@id/alarm_list_time"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/colorAccent"/>
 
-    <Button
+
+    <ImageButton
             android:id="@+id/alarm_on"
-            android:text="On"
+            android:contentDescription="Turn Alarm On"
+            android:src="@drawable/ic_on"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintRight_toLeftOf="@+id/alarm_off"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="16dp">
-    </Button>
+            app:layout_constraintStart_toEndOf="@id/alarm_list_time"
+            app:layout_constraintEnd_toStartOf="@id/alarm_off"
+            app:layout_constraintTop_toTopOf="@id/alarm_list_time"
+            app:layout_constraintBottom_toBottomOf="@id/alarm_list_time"/>
 
-    <Button
+
+    <ImageButton
             android:id="@+id/alarm_off"
-            android:text="OFF"
+            android:contentDescription="Turn Alarm Off"
+            android:src="@drawable/ic_off"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toRightOf="@+id/alarm_on"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="100dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/alarm_on"
+            app:layout_constraintTop_toTopOf="@id/alarm_list_time"
+            app:layout_constraintBottom_toBottomOf="@id/alarm_list_time" android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"/>
 
 
 
