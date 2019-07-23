@@ -13,3 +13,4 @@ not completely functional.
 * [State of App](docs/state-of-app.md)
 * [DDL Documentation](docs/data-model.md)
 * [How to Use My App](docs/how-to-use.md)
+* [JavaDoc](docs/api/index.html)
