@@ -9,7 +9,7 @@ day and night mode and access a calendar view although the calendar view is curr
 not completely functional.
 
 The minimum API level for the app is 21 .
-I have tested this app with a Nexus 5X API 28(Android 9, API 28)
+I have tested this app with a Nexus 5X API 28(Android 9, API 28).
 Stetho and GoogleSignIn are both used in this app.
 
 
