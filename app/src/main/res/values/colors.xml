@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#C0C0C0</color>
-  <color name="colorPrimaryDark">#000000</color>
-  <color name="colorAccent">#F00000</color>
-  <color name="colorDayText">#F222</color>
-  <color name="backgroundWindowDay">#FFFFFF</color>
-  <!-- Dark theme colors -->
-  <color name="colorPrimaryNight">#FF000000</color>
-  <color name="colorPrimaryDarkNight">#77888999</color>
-  <color name="colorAccentNight">#F00000</color>
-  <color name="backgroundWindow">#777777</color>
+    <color name="colorPrimary">#C0C0C0</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#F00000</color>
+    <color name="colorDayText">#F222</color>
+    <color name="backgroundWindowDay">#FFFFFF</color>
+    <!-- Dark theme colors -->
+    <color name="colorPrimaryNight">#FF000000</color>
+    <color name="colorPrimaryDarkNight">#77888999</color>
+    <color name="colorAccentNight">#F00000</color>
+    <color name="backgroundWindow">#777777</color>
 
-  <color name="textColor">#F00000</color>
+    <color name="textColor">#F00000</color>
 </resources>

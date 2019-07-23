@@ -1,0 +1,11 @@
+io.github.austindewitt13.rot
+io.github.austindewitt13.rot.activities
+io.github.austindewitt13.rot.controller
+io.github.austindewitt13.rot.dao
+io.github.austindewitt13.rot.fragments
+io.github.austindewitt13.rot.manager
+io.github.austindewitt13.rot.model
+io.github.austindewitt13.rot.service
+io.github.austindewitt13.rot.util
+io.github.austindewitt13.rot.view
+io.github.austindewitt13.rot.viewmodel

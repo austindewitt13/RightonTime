@@ -13,6 +13,9 @@ import org.junit.rules.TestRule;
 import org.junit.runners.MethodSorters;
 import static org.junit.Assert.*;
 
+/**
+ * Tests the AlarmDao input to the AlarmEventDatabase.
+ */
 @SmallTest
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AlarmDaoTest {
@@ -21,9 +24,16 @@ public class AlarmDaoTest {
     private static AlarmDao dao;
     private static long alarmId;
 
+    /**
+     * Creates the rule for task.
+     */
     @Rule
     public TestRule rule = new InstantTaskExecutorRule();
 
+    /**
+     * @throws Exception
+     * Tests and throws exception in AlarmDao.
+     */
     @BeforeClass
     public static void setup() throws Exception {
         Context context = ApplicationProvider.getApplicationContext();
@@ -31,6 +41,9 @@ public class AlarmDaoTest {
         dao = db.alarmDao();
     }
 
+    /**
+     * Inserts a new Alarm into the AlarEventDatabase.
+     */
     @Test
     public void insert() {
         Alarm alarm = new Alarm();
@@ -40,6 +53,9 @@ public class AlarmDaoTest {
         assertTrue(alarmId > 0);
     }
 
+    /**
+     * Inserts a new Alarm into the AlarmEventDatabase and is expected to throw an Exception.
+     */
     @Test(expected = Exception.class)
     public void insertNullAlarm() {
         Alarm alarm = new Alarm();
@@ -47,6 +63,10 @@ public class AlarmDaoTest {
         fail("This shouldn't get here");
     }
 
+    /**
+     * @throws InterruptedException
+     * Finds the id of an Alarm in the AlarmEventDatabase and asserts that it equals a certain value.
+     */
     @Test
     public void postInsertFindById() throws InterruptedException {
         Alarm alarm = LiveDataTestUtil.getValue(dao.findById(alarmId));
@@ -54,7 +74,10 @@ public class AlarmDaoTest {
         assertEquals(12,alarm.getHour());
     }
 
-
+    /**
+     * @throws Exception
+     * Closes the Database.
+     */
     @AfterClass
     public static void tearDown() throws Exception {
         db.close();

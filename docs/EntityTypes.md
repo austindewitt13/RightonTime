@@ -7,5 +7,4 @@ Alarms:
 Events: 
  
 * event: String
-
-* date:date
+* date:Date
