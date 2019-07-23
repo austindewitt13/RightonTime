@@ -1,4 +1,4 @@
-##How to Use My App
+## How to Use My App
 
 Upon booting the app for the first time, it will prompt you to sign in with Google Sign In.
 Once you proceed past the sign in you can now access everything that the app has in it.
