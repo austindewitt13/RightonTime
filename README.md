@@ -9,7 +9,9 @@ not completely functional.
 
 * [User stories](docs/user-stories.md)
 * [Wireframes](docs/wireframes.md)
+* [Wireframe PDF](docs/RightOnTime.pdf)
 * [Entity Relationship Diagram](docs/erd.md)
+* [Entity PDF](docs/erd.pdf)
 * [State of App](docs/state-of-app.md)
 * [DDL Documentation](docs/data-model.md)
 * [How to Use My App](docs/how-to-use.md)
