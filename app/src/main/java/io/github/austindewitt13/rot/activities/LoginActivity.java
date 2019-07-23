@@ -1,4 +1,8 @@
-package io.github.austindewitt13.rot;
+/*
+Copyright (c) 2019 Austin DeWitt all rights reserved.
+*/
+
+package io.github.austindewitt13.rot.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +13,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import io.github.austindewitt13.rot.R;
 import io.github.austindewitt13.rot.controller.MainActivity;
 import io.github.austindewitt13.rot.service.GoogleSignInService;
+
+/**
+ * LoginActivity sets up a content view for Google Sign In and has the User sign into their account.
+ */
 
 public class LoginActivity extends AppCompatActivity {
 

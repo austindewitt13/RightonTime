@@ -1,5 +1,5 @@
 /*
-Copyright (c) Austin DeWitt all rights reserved.
+Copyright (c) 2019 Austin DeWitt all rights reserved.
 */
 
 package io.github.austindewitt13.rot.model;
@@ -44,10 +44,11 @@ public class Alarm {
     public String toStandardTime() {
         int hourStandard = getHour();
         boolean afternoon = false;
-        if (getHour() > 12) {
-            hourStandard = getHour() - 12;
+        hourStandard = getHour() % 12;
+        if (getHour() >= 12) {
             afternoon = true;
-        } else if (getHour() == 0) {
+        }
+        if (hourStandard == 0) {
             hourStandard = 12;
         }
         return String.format("%d : %02d %s", hourStandard, getMinute(), afternoon ? "PM" : "AM");

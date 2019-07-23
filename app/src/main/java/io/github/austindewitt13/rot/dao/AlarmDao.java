@@ -1,3 +1,7 @@
+/*
+Copyright (c) 2019 Austin DeWitt all rights reserved.
+*/
+
 package io.github.austindewitt13.rot.dao;
 
 import androidx.lifecycle.LiveData;
@@ -20,7 +24,7 @@ public interface AlarmDao {
   long insert(Alarm alarm);
 
   @Delete
-  int delete(Alarm alarmId);
+  int delete(Alarm... alarms);
 
   @Query("SELECT * FROM alarm ORDER BY hour, minute")
   LiveData<List<Alarm>> getAll();

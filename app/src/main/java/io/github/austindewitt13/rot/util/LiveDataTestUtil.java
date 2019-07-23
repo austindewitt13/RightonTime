@@ -1,3 +1,7 @@
+/*
+Copyright (c) 2019 Austin DeWitt all rights reserved.
+*/
+
 package io.github.austindewitt13.rot.util;
 
 import androidx.annotation.Nullable;

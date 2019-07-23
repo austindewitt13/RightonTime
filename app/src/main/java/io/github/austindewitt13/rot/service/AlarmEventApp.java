@@ -1,4 +1,8 @@
-package io.github.austindewitt13.rot;
+/*
+Copyright (c) 2019 Austin DeWitt all rights reserved.
+*/
+
+package io.github.austindewitt13.rot.service;
 
 import android.app.Application;
 import com.facebook.stetho.Stetho;

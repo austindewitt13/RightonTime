@@ -11,7 +11,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/colorAccent"
             android:textSize="45sp"
             android:textAlignment="textEnd"
             app:layout_constraintWidth_percent="0.6"
@@ -22,15 +21,15 @@
 
     <ImageButton
             android:id="@+id/cancel_alarm"
-            android:src="@drawable/ic_cancel"
+            android:src="@drawable/ic_remove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/alarm_list_time"
             app:layout_constraintTop_toTopOf="@id/alarm_list_time"
             app:layout_constraintBottom_toBottomOf="@id/alarm_list_time"
-            android:layout_marginStart="8dp"
-            android:backgroundTint="@color/colorAccent"/>
+            android:layout_marginStart="8dp" android:background="@drawable/ic_remove"
+    />
 
 
     <ImageButton
@@ -55,7 +54,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/alarm_on"
             app:layout_constraintTop_toTopOf="@id/alarm_list_time"
-            app:layout_constraintBottom_toBottomOf="@id/alarm_list_time" android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/alarm_list_time"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"/>
 
 

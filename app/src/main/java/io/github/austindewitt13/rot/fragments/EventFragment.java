@@ -1,4 +1,8 @@
-package io.github.austindewitt13.rot;
+/*
+Copyright (c) 2019 Austin DeWitt all rights reserved.
+*/
+
+package io.github.austindewitt13.rot.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +13,7 @@ import android.widget.CalendarView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import io.github.austindewitt13.rot.R;
 import io.github.austindewitt13.rot.model.Event;
 import io.github.austindewitt13.rot.viewmodel.EventViewModel;
 

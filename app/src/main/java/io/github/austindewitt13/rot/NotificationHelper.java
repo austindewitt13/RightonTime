@@ -1,3 +1,7 @@
+/*
+Copyright (c) 2019 Austin DeWitt all rights reserved.
+*/
+
 package io.github.austindewitt13.rot;
 
 import android.annotation.TargetApi;
@@ -8,12 +12,17 @@ import android.content.ContextWrapper;
 import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
+/**
+ *NotificationHelper
+ */
 public class NotificationHelper extends ContextWrapper {
 
-    public static final String channelID = "channelID";
-    public static final String channelID2 = "channelID2";
-    public static final String channelName = "Channel Name";
-    public static final String channelName2 = "Channel Name";
+    private static final String channelID = "channelID";
+    private static final String channelID2 = "channelID2";
+    private static final String channelID3 = "channelID3";
+    private static final String channelName = "Channel Name";
+    private static final String channelName2 = "Channel Name";
+    private static final String channelName3 = "Channel Name";
 
     private NotificationManager mManager;
 
@@ -22,6 +31,7 @@ public class NotificationHelper extends ContextWrapper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createChannel();
             createChannel2();
+            createChannel3();
         }
     }
 
@@ -39,6 +49,11 @@ public class NotificationHelper extends ContextWrapper {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.O)
+    private void createChannel3() {
+        NotificationChannel channel3 = new NotificationChannel(channelID3, channelName3, NotificationManager.IMPORTANCE_HIGH);
+    }
+
     public NotificationManager getManager() {
         if (mManager == null) {
             mManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -50,12 +65,19 @@ public class NotificationHelper extends ContextWrapper {
     public NotificationCompat.Builder SetAlarmNotification() {
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
                 .setContentTitle("Wakey, Wakey, Eggs, and Bakey!")
-                .setSmallIcon(R.drawable.ic_add);
+                .setSmallIcon(R.drawable.set_alarm);
+
     }
 
     public NotificationCompat.Builder CancelAlarmNotification() {
         return new NotificationCompat.Builder(getApplicationContext(),channelID2)
-                .setContentTitle("Alarm Removed!")
-                .setSmallIcon(R.drawable.ic_remove);
+                .setContentTitle("Alarm Stopped")
+                .setSmallIcon(R.drawable.ic_off);
+    }
+
+    public NotificationCompat.Builder StartAlarmNotifiaction() {
+        return new NotificationCompat.Builder(getApplicationContext(), channelID3)
+                .setContentTitle("Alarm Started")
+                .setSmallIcon(R.drawable.ic_start);
     }
 }

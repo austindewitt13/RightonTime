@@ -1,3 +1,7 @@
+/*
+Copyright (c) 2019 Austin DeWitt all rights reserved.
+*/
+
 package io.github.austindewitt13.rot.controller;
 
 import android.content.Intent;
@@ -11,13 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import io.github.austindewitt13.rot.AlarmFragment;
-import io.github.austindewitt13.rot.EventFragment;
-import io.github.austindewitt13.rot.LoginActivity;
 import io.github.austindewitt13.rot.R;
+import io.github.austindewitt13.rot.activities.LoginActivity;
+import io.github.austindewitt13.rot.fragments.AlarmFragment;
+import io.github.austindewitt13.rot.fragments.DayModeFragment;
+import io.github.austindewitt13.rot.fragments.EventFragment;
+import io.github.austindewitt13.rot.fragments.NightModeFragment;
 import io.github.austindewitt13.rot.service.GoogleSignInService;
-import io.github.austindewitt13.rot.util.Utils;
-
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -31,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getTime();
         fragmentSwitching();
+
+
+
     }
 
     @Override
@@ -58,26 +65,23 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_calendar:
                     selectedFragment = EventFragment.newInstance();
-                    navigation.setSelectedItemId(R.id.calendarView);
                     Log.d(TAG, "calendar nav button worked");
-                    break;
-
-                case R.id.navigation_night_mode:
-                    Utils.changeToTheme(this, Utils.THEME_NIGHT);
-                    navigation.setSelectedItemId(R.id.navigation_night_mode);
-                    break;
-
-                case R.id.navigation_day_mode:
-                    Utils.changeToTheme(this, Utils.THEME_DAY);
-                    navigation.setSelectedItemId(R.id.navigation_day_mode);
                     break;
 
                 case R.id.navigation_set_alarms:
                     selectedFragment = AlarmFragment.newInstance();
-                    navigation.setSelectedItemId(R.id.alarm_list);
                     Log.d(TAG, "alarm nav button worked");
                     break;
 
+                case R.id.navigation_night_mode:
+                    selectedFragment = NightModeFragment.newInstance();
+                    Log.d(TAG,"night mode button worked");
+                    break;
+
+                case R.id.navigation_day_mode:
+                   selectedFragment = DayModeFragment.newInstance();
+                   Log.d(TAG, "day mode button worked");
+                    break;
             }
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             assert selectedFragment != null;

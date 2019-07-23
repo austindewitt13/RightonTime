@@ -1,7 +1,10 @@
+/*
+Copyright (c) 2019 Austin DeWitt all rights reserved.
+*/
+
 package io.github.austindewitt13.rot;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
@@ -30,27 +33,11 @@ public abstract class AlarmEventDatabase extends RoomDatabase {
                 @Override
                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                   super.onCreate(db);
-                  new PopulateDbTask(INSTANCE).execute();
                 }
               }).build();
         }
       }
     }
     return INSTANCE;
-  }
-  private static class PopulateDbTask extends AsyncTask<Void, Void, Void> {
-
-    private final AlarmEventDatabase db;
-
-    PopulateDbTask(AlarmEventDatabase db){
-      this.db = db;
-    }
-
-    @Override
-    protected Void doInBackground(Void... voids) {
-      Alarm alarm = new Alarm();
-      db.alarmDao().insert(alarm);
-      return null;
-    }
   }
 }
