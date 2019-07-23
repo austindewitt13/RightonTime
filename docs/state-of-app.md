@@ -1,4 +1,4 @@
-##Current State of Application
+## Current State of Application
 
  Upon booting up the app for the first time it will ask the User to enter in their 
  credentials for Google Sign In. 
